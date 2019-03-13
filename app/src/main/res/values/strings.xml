@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AppLauncherTestDrive</string>
+    <string name="title_activity_drawer_app_list">DrawerAppList</string>
 </resources>
