@@ -4,11 +4,10 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.junit.Test
 import org.junit.Rule
 import androidx.test.espresso.intent.matcher.IntentMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.*
 
 
 class AppDrawer {
@@ -23,4 +22,11 @@ class AppDrawer {
         intended(hasComponent(DrawerAppList::class.java.name))
         onView(withId(R.id.app_list)).check(matches(isDisplayed()))
     }
+
+    @Test
+    fun listsOneAppInDrawer() {
+        val appList = listOf("Gmail")
+        onView(withId(R.id.app_list)).check(matches(hasChildCount(appList.size)))
+    }
+
 }
