@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AppLauncherTestDrive</string>
     <string name="title_activity_drawer_app_list">DrawerAppList</string>
+    <string name="test">Test</string>
+    <string name="hey_there_test_this">Hey There - test this</string>
+    <string name="test_remove_the_warning">test - remove the warning</string>
+    <string name="chrome">Chrome</string>
+    <string name="app_drawer">App Drawer</string>
 </resources>

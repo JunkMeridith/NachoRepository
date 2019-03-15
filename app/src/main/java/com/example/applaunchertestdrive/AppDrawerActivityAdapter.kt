@@ -1,4 +1,4 @@
-package com.example.spudlauncher
+package com.example.applaunchertestdrive
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applaunchertestdrive.R
 import kotlinx.android.synthetic.main.row.view.*
 
 
-class AppDrawerAdapter(): RecyclerView.Adapter<ViewHolder>() {
-    var appList: ArrayList<String> = ArrayList()
+class AppDrawerAdapter : RecyclerView.Adapter<ViewHolder>() {
 
-    init {
-        appList.add("Google")
-    }
+    private val appList = listOf("Gmail")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,18 +26,12 @@ class AppDrawerAdapter(): RecyclerView.Adapter<ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val textView = holder.textView
-        textView.setText(appList[position])
+        textView.text = appList[position]
     }
 }
 
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var row: ConstraintLayout
-    var textView: TextView
-    var img: ImageView
-
-    init {
-        row = itemView.a_row
-        textView = itemView.txt
-        img = itemView.img
-    }
+    var row: ConstraintLayout = itemView.a_row
+    var textView: TextView = itemView.txt
+    var img: ImageView = itemView.img
 }

@@ -1,17 +1,22 @@
 package com.example.applaunchertestdrive
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.app_drawer_layout.*
 
-import kotlinx.android.synthetic.main.activity_drawer_app_list.*
-
-class DrawerAppList : AppCompatActivity() {
+class AppDrawerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_drawer_app_list)
-        setSupportActionBar(toolbar)
+        setContentView(R.layout.app_drawer_layout)
 
+        appDrawerList.adapter = AppDrawerAdapter()
+        appDrawerList.layoutManager = LinearLayoutManager(this)
     }
 
 }
+
+
+
+

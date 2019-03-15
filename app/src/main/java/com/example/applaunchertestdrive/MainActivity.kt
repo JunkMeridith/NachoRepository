@@ -3,8 +3,8 @@ package com.example.applaunchertestdrive
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,29 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
 
-        chromeButton.setOnClickListener {
-            onChromeButtonClick()
-        }
-
-        appDrawerButton.setOnClickListener {
-            onAppDroorButtonClick()
-        }
+    fun onClickAppDrawerButton(@Suppress("UNUSED_PARAMETER") view: View) {
+        startActivity(Intent(this, AppDrawerActivity::class.java))
 
     }
 
-    private fun onAppDroorButtonClick() {
-        startActivity(Intent(this, DrawerAppList::class.java))
-
-    }
-
-    fun onChromeButtonClick() {
+     fun onClickChromeButton(@Suppress("UNUSED_PARAMETER") view: View) {
         val launchIntent = packageManager.getLaunchIntentForPackage("com.android.chrome")
         startActivity(launchIntent)
     }
-
-
-
 
 
 }
