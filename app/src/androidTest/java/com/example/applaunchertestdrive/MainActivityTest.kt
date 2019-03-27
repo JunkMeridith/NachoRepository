@@ -9,8 +9,10 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.toPackage
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.rule.GrantPermissionRule
 import org.junit.Rule
 import org.junit.Test
+
 
 class MainActivityTest {
 
@@ -18,8 +20,18 @@ class MainActivityTest {
     val activityRule = IntentsTestRule(MainActivity::class.java)
 
     @Test
-    fun buttonExists() {
+    fun chromeButtonExists() {
         onView(withId(R.id.chromeButton)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun appDrawerButtonExists() {
+        onView(withId(R.id.appDrawerButton)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun videoChatButtonExists() {
+        onView(withId(R.id.videoChatButton)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -33,8 +45,14 @@ class MainActivityTest {
         onView(withId(R.id.appDrawerButton)).perform(click())
         intended(hasComponent(AppDrawerActivity::class.java.name))
         onView(withId(R.id.appDrawerList)).check(matches(isDisplayed()))
-
     }
+
+    @Test
+    fun videoChatButtonLaunchesTwilio() {
+        onView(withId(R.id.videoChatButton)).perform(click())
+        intended(toPackage("com.twilio.video.quickstart.kotlin"))
+    }
+
 }
 
 
