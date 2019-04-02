@@ -1,6 +1,8 @@
 package com.example.applaunchertestdrive
 
+import android.content.Context
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.row.view.*
 
 
-class AppDrawerAdapter(val installedApps: List<String>) : RecyclerView.Adapter<ViewHolder>() {
+class AppDrawerAdapter(val installedApps: List<ApplicationInfo>, val packageManager: PackageManager, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row, parent, false)
+
         return ViewHolder(view)
     }
 
@@ -24,8 +27,17 @@ class AppDrawerAdapter(val installedApps: List<String>) : RecyclerView.Adapter<V
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.row.setOnClickListener{
+            val launchIntentForPackage = packageManager.getLaunchIntentForPackage(installedApps[position].packageName)
+            context.startActivity(launchIntentForPackage!!)
+        }
+
         val textView = holder.textView
-        textView.text = installedApps[position]
+        textView.text = packageManager.getApplicationLabel(installedApps[position])
+
+        val imageView = holder.img
+        imageView.setImageDrawable(packageManager.getApplicationIcon(installedApps[position]))
+
     }
 }
 
