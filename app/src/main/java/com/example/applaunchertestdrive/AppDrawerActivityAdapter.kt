@@ -1,5 +1,6 @@
 package com.example.applaunchertestdrive
 
+import android.content.pm.ApplicationInfo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.row.view.*
 
 
-class AppDrawerAdapter : RecyclerView.Adapter<ViewHolder>() {
-
-    private val appList = listOf("Gmail")
+class AppDrawerAdapter(val installedApps: List<String>) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -21,12 +20,12 @@ class AppDrawerAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return appList.size
+        return installedApps.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val textView = holder.textView
-        textView.text = appList[position]
+        textView.text = installedApps[position]
     }
 }
 

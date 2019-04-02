@@ -1,5 +1,6 @@
 package com.example.applaunchertestdrive
 
+import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,8 +12,16 @@ class AppDrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.app_drawer_layout)
 
-        appDrawerList.adapter = AppDrawerAdapter()
+        val installedApps = this.packageManager.getInstalledApplications(0)
+        val installedAppNames = installedApps.map{ ApplicationInfo(it).name }.toList()
+
+        appDrawerList.adapter = AppDrawerAdapter(installedAppNames)
         appDrawerList.layoutManager = LinearLayoutManager(this)
+
+
+
+
+
     }
 
 }
